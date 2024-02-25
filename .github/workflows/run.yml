@@ -14,5 +14,4 @@ jobs:
           JENKINS_URL: ${{ env.JENKINS_URL }}
         run: |
           curl -X POST $JENKINS_URL/job/test/build \
-          --user durga:$JENKINS_API_TOKEN \
-          --data-urlencode json='{"parameter": [{"name":"PARAM_NAME", "value":"PARAM_VALUE"}]}'
+          --user durga:$JENKINS_API_TOKEN
