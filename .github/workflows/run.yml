@@ -18,14 +18,4 @@ jobs:
           queue_url=$(curl -X POST $JENKINS_URL/job/test/build \
             --user durga:$JENKINS_API_TOKEN) 
           
-          # Extract queue item number
-          queue_item=$(basename "$queue_url")
-
-          echo "$queue_item"
-
-          status=""
-          while [ "$status" != "SUCCESS" ] && [ "$status" != "FAILURE" ]; do
-            status=$(curl -s -X GET "$JENKINS_URL/queue/item/$queue_item/api/json" \
-              --user durga:$JENKINS_API_TOKEN | jq -r .executable.result)
-            sleep 5
-          done
+          echo "URL is: $queue_url"
