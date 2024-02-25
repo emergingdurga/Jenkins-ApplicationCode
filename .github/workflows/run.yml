@@ -14,7 +14,7 @@ jobs:
           JENKINS_URL: ${{ vars.JENKINS_URL }}
         run: |
           # Trigger Jenkins job and get queue item number
-          queue_url=$(curl -X POST $JENKINS_URL/job/your_job_name/build \
+          queue_url=$(curl -X POST $JENKINS_URL/job/test/build \
             --user durga:$JENKINS_API_TOKEN \
             -s -L -w "%{url_effective}" -o /dev/null)
           
