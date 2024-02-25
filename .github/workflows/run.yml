@@ -1,35 +1,19 @@
 name: Trigger Jenkins Job on Pull Request
 
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  trigger_jenkins_job:
+  trigger-a-jenkins-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Jenkins job
-        env:
-          JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
-        run: |
-          # Trigger Jenkins job and get queue item number
-          queue_url=$(curl -X POST https://66fcb0e9fb53496894b8ba363b676c3e-2887499781-8080-host12nc.environments.katacoda.com/job/test/build \
-            --user admin:$JENKINS_API_TOKEN 
-          
-          # Extract queue item number
-          queue_item=$(basename "$queue_url")
-          
-          # Poll Jenkins job status until it finishes
-          status=""
-          while [ "$status" != "SUCCESS" ] && [ "$status" != "FAILURE" ]; do
-            status=$(curl -s -X GET "https://66fcb0e9fb53496894b8ba363b676c3e-2887499781-8080-host12nc.environments.katacoda.com/queue/item/$queue_item/api/json" \
-              --user admin:$JENKINS_API_TOKEN | jq -r .executable.result)
-            sleep 5
-          done
-          
-          # Fail GitHub Actions workflow if Jenkins job fails
-          if [ "$status" != "SUCCESS" ]; then
-            echo "Jenkins job failed."
-            exit 1
-          fi
+      - name: Trigger jenkins job
+        uses: jabbukka/jenkins-trigger@main
+        with:
+          url: ${{ vars.JENKINS_URL }}
+          job_name: "test"
+          user_name: "durga"
+          api_token: ${{ secrets.JENKINS_API_TOKEN }}
+          wait: "true"
+          timeout: "1000" #timeout
