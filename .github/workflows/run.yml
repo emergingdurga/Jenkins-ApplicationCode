@@ -20,3 +20,12 @@ jobs:
           # Extract queue item number
           queue_item=$(basename "$queue_url")
           echo "Item is: $queue_item"
+
+          # Poll Jenkins job status until it finishes
+          status=""
+          while [ "$status" != "SUCCESS" ] && [ "$status" != "FAILURE" ]; do
+            status=$(curl -s -X GET "$JENKINS_URL/queue/item/$queue_item/api/json" \
+              --user durga:$JENKINS_API_TOKEN | jq -r .executable.result)
+            echo "Status of the build is $status"
+            sleep 5
+          done
