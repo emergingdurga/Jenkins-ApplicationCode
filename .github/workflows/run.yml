@@ -17,6 +17,6 @@ jobs:
         env:
           JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
         run: |
-          curl -X POST https://your_jenkins_url/job/your_job_name/build \
+          curl -X POST https://66fcb0e9fb53496894b8ba363b676c3e-2887499781-8080-host12nc.environments.katacoda.com/job/test/build \
           --user admin:$JENKINS_API_TOKEN \
-          --data-urlencode json='{"parameter": [{"name":"PARAM_NAME", "value":"PARAM_VALUE"}]}'
+
