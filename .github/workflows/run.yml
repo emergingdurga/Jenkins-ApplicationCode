@@ -19,4 +19,4 @@ jobs:
           JENKINS_URL: ${{ secrets.JENKINS_URL }}
         run: |
           curl -X POST $JENKINS_URL/job/test/build \
-          --user admin:$JENKINS_API_TOKEN \
+          --user durga:$JENKINS_API_TOKEN \
