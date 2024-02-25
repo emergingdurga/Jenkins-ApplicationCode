@@ -16,7 +16,7 @@ jobs:
         run: |
           # Trigger Jenkins job and get queue item number
           queue_url=$(curl -X POST $JENKINS_URL/job/test/build \
-            --user admin:$JENKINS_API_TOKEN 
+            --user admin:$JENKINS_API_TOKEN)
           
           # Extract queue item number
           queue_item=$(basename "$queue_url")
