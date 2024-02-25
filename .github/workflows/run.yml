@@ -22,3 +22,10 @@ jobs:
           queue_item=$(basename "$queue_url")
 
           echo "$queue_item"
+
+          status=""
+          while [ "$status" != "SUCCESS" ] && [ "$status" != "FAILURE" ]; do
+            status=$(curl -s -X GET "$JENKINS_URL/queue/item/$queue_item/api/json" \
+              --user durga:$JENKINS_API_TOKEN | jq -r .executable.result)
+            sleep 5
+          done
