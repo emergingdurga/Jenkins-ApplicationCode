@@ -14,3 +14,11 @@ jobs:
           JENKINS_URL: ${{ vars.JENKINS_URL }}
         run: |
           echo "Durga of MY_VARIABLE: $JENKINS_URL"
+             # Trigger Jenkins job and get queue item number
+          queue_url=$(curl -X POST $JENKINS_URL/job/test/build \
+            --user durga:$JENKINS_API_TOKEN) 
+          
+          # Extract queue item number
+          queue_item=$(basename "$queue_url")
+
+          echo "$queue_item"
