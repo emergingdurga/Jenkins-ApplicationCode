@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  trigger_jenkins_job:
+  trigger-a-jenkins-job:
     runs-on: ubuntu-latest
     steps:
       - id: triggerjenkinsjob
@@ -14,7 +14,7 @@ jobs:
           jenkins-server:  "${{ vars.JENKINS_URL }}" # URL of the jenkins server. ex: http://myjenkins.acme.com:8080
           jenkins-job: "test" # The name of the jenkins job to run
           jenkins-username: "durga" # user name for accessing jenkins
-          jenkins-pat: ${{ secrets.JENKINS_API_TOKEN }} # personal Access token for accessing Jenkins
+          jenkins-pat: "${{ secrets.JENKINS_API_TOKEN }}" # personal Access token for accessing Jenkins
           poll-time: 10 # how often (seconds) to poll the jenkins server for results
           timeout-value: 600 # How long (seconds) to poll before timing out the action
-          verbose: true 
+          verbose: true # true/false - turns on extra logging
