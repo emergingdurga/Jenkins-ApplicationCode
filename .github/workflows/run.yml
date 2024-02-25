@@ -13,4 +13,4 @@ jobs:
           JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
           JENKINS_URL: ${{ env.JENKINS_URL }}
         run: |
-          echo "Value of MY_VARIABLE: ${{ env.JENKINS_URL }}"
+          echo "Value of MY_VARIABLE: ${{ vars.JENKINS_URL }}"
