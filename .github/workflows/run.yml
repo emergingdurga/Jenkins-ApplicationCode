@@ -11,6 +11,6 @@ jobs:
       - name: Trigger Jenkins job
         env:
           JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
-          JENKINS_URL: ${{ env.JENKINS_URL }}
+          JENKINS_URL: ${{ vars.JENKINS_URL }}
         run: |
-          echo "Value of MY_VARIABLE: ${{ vars.JENKINS_URL }}"
+          echo "Durga of MY_VARIABLE: $JENKINS_URL"
