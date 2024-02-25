@@ -16,6 +16,6 @@ jobs:
           echo "Durga of MY_VARIABLE: $JENKINS_URL"
              # Trigger Jenkins job and get queue item number
           queue_url=$(curl -X POST $JENKINS_URL/job/test/build \
-            --user durga:$JENKINS_API_TOKEN) 
+            --user durga:$JENKINS_API_TOKEN  -s -L -w "%{url_effective}" -o /dev/null) 
           
           echo "URL is: $queue_url"
