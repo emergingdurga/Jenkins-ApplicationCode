@@ -25,7 +25,7 @@ jobs:
           status=""
           while [ "$status" != "SUCCESS" ] && [ "$status" != "FAILURE" ]; do
             status=$(curl -s -X GET "$JENKINS_URL/queue/item/$queue_item/api/json" \
-              --user admin:$JENKINS_API_TOKEN | jq -r .executable.result)
+              --user durga:$JENKINS_API_TOKEN | jq -r .executable.result)
             sleep 5
           done
           
